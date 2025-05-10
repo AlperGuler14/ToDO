@@ -1,4 +1,5 @@
 :root {
+    /* Light Theme Vars */
     --primary: #6c5ce7;
     --secondary: #a29bfe;
     --danger: #ff7675;
@@ -6,31 +7,111 @@
     --warning: #fdcb6e;
     --dark: #2d3436;
     --light: #f8f9fa;
+    
+    /* Background Colors */
+    --bg-primary: #f5f7fa;
+    --bg-secondary: rgba(255, 255, 255, 0.85);
+    --bg-card: rgba(255, 255, 255, 0.75);
+    --bg-input: rgba(255, 255, 255, 0.8);
+    
+    /* Text Colors */
+    --text-primary: #2d3436;
+    --text-secondary: #636e72;
+    
+    /* Border Colors */
+    --border-color: rgba(223, 230, 233, 0.7);
+    --border-glass: rgba(255, 255, 255, 0.18);
+    
+    /* Shadow Colors */
+    --shadow-color: rgba(31, 38, 135, 0.1);
+    --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    /* Completed Task */
+    --completed-bg: rgba(241, 242, 246, 0.6);
+    --completed-border: rgba(220, 221, 225, 0.6);
+    
+    /* Subtask Colors */
+    --subtask-bg: rgba(248, 249, 250, 0.6);
+    --subtask-hover: rgba(248, 249, 250, 0.8);
+    
+    /* Form Card */
+    --form-card-bg: rgba(249, 249, 255, 0.8);
+    --form-card-border: rgba(224, 224, 224, 0.7);
+    
+    /* Blur Effects */
+    --blur-amount: 10px;
+}
+
+/* Dark Mode Vars */
+[data-theme="dark"] {
+    --primary: #8476f2;
+    --secondary: #b8b0ff;
+    --danger: #ff8a7a;
+    --success: #00d1a5;
+    --warning: #ffd166;
+    --dark: #e0e0e0;
+    --light: #1a1a1a;
+    
+    /* Background Colors */
+    --bg-primary: #121212;
+    --bg-secondary: rgba(30, 30, 30, 0.85);
+    --bg-card: rgba(45, 45, 45, 0.75);
+    --bg-input: rgba(51, 51, 51, 0.8);
+    
+    /* Text Colors */
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    
+    /* Border Colors */
+    --border-color: rgba(68, 68, 68, 0.7);
+    --border-glass: rgba(255, 255, 255, 0.1);
+    
+    /* Shadow Colors */
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+    
+    /* Completed Task */
+    --completed-bg: rgba(42, 42, 42, 0.6);
+    --completed-border: rgba(68, 68, 68, 0.6);
+    
+    /* Subtask Colors */
+    --subtask-bg: rgba(51, 51, 51, 0.6);
+    --subtask-hover: rgba(58, 58, 58, 0.8);
+    
+    /* Form Card */
+    --form-card-bg: rgba(42, 42, 58, 0.8);
+    --form-card-border: rgba(68, 68, 68, 0.7);
+    
+    /* Blur Effects */
+    --blur-amount: 12px;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f5f7fa;
-    color: var(--dark);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) fixed;
+    color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    transition: all 0.3s ease;
 }
+
 
 .app-container {
     position: relative;
-    min-height: 100vh;
+    height: 100vh;
     padding-bottom: 2rem;
 }
 
 .page {
     transition: all 0.5s ease;
     position: relative;
+    height: 50vh;
 }
 
 .page.hidden {
@@ -46,9 +127,12 @@ body {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    background: white;
+    background: var(--bg-secondary);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-glass);
     transition: all 0.5s ease;
 }
 
@@ -67,6 +151,7 @@ h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav-buttons {
@@ -77,8 +162,9 @@ h1 {
 }
 
 .date {
-    color: #636e72;
+    color: var(--text-secondary);
     font-size: 1.1rem;
+    opacity: 0.9;
 }
 
 .form-group {
@@ -89,7 +175,7 @@ label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--text-primary);
 }
 
 input,
@@ -97,10 +183,14 @@ select,
 textarea {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #dfe6e9;
+    background: var(--bg-input);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
     border-radius: 10px;
     font-size: 1rem;
     transition: all 0.3s ease;
+    color: var(--text-primary);
 }
 
 input:focus,
@@ -109,6 +199,13 @@ textarea:focus {
     border-color: var(--primary);
     outline: none;
     box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+    background: rgba(60, 60, 60, 0.9);
 }
 
 textarea {
@@ -131,30 +228,46 @@ textarea {
     cursor: pointer;
     transition: all 0.3s;
     font-weight: 600;
-    border: 2px solid transparent;
+    border: 1px solid var(--border-glass);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .priority-option:hover {
     transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .priority-option.selected {
     border-color: currentColor;
+    box-shadow: 0 0 0 2px currentColor;
 }
 
 .low {
-    background-color: rgba(0, 184, 148, 0.1);
+    background: rgba(0, 184, 148, 0.15);
     color: var(--success);
 }
 
 .medium {
-    background-color: rgba(253, 203, 110, 0.1);
+    background: rgba(253, 203, 110, 0.15);
     color: var(--warning);
 }
 
 .high {
-    background-color: rgba(255, 118, 117, 0.1);
+    background: rgba(255, 118, 117, 0.15);
     color: var(--danger);
+}
+
+[data-theme="dark"] .low {
+    background: rgba(0, 209, 165, 0.2);
+}
+
+[data-theme="dark"] .medium {
+    background: rgba(255, 209, 102, 0.2);
+}
+
+[data-theme="dark"] .high {
+    background: rgba(255, 138, 122, 0.2);
 }
 
 .btn {
@@ -165,26 +278,31 @@ textarea {
     transition: all 0.3s;
     border: none;
     font-size: 1rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
 }
 
 .btn-primary {
-    background-color: var(--primary);
+    background: rgba(108, 92, 231, 0.8);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: #5649c0;
+    background: rgba(108, 92, 231, 0.9);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
 }
 
 .btn-secondary {
-    background-color: var(--secondary);
+    background: rgba(162, 155, 254, 0.7);
     color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #8279e6;
+    background: rgba(162, 155, 254, 0.8);
     transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(162, 155, 254, 0.2);
 }
 
 .task-list {
@@ -194,87 +312,189 @@ textarea {
 .task {
     padding: 1.5rem;
     margin-bottom: 1rem;
-    background: white;
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid;
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-glass);
     transition: all 0.3s;
     position: relative;
+    overflow: hidden;
+}
+
+.task::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+}
+
+.task.low::before {
+    background: linear-gradient(to bottom, var(--success), rgba(0, 184, 148, 0.5));
+}
+
+.task.medium::before {
+    background: linear-gradient(to bottom, var(--warning), rgba(253, 203, 110, 0.5));
+}
+
+.task.high::before {
+    background: linear-gradient(to bottom, var(--danger), rgba(255, 118, 117, 0.5));
 }
 
 .task:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.task.low {
-    border-left-color: var(--success);
-}
-
-.task.medium {
-    border-left-color: var(--warning);
-}
-
-.task.high {
-    border-left-color: var(--danger);
-}
-
+/* Updated Completed Task Styles */
 .task.completed {
-    position: relative;
-    background-color: #f1f2f6;
-    border-left-color: #dcdde1;
-    filter: grayscale(80%);
+    background: var(--completed-bg);
+    border-color: var(--completed-border);
+    filter: grayscale(70%);
+    opacity: 0.8;
 }
 
 .task.completed::after {
-    content: "";
+    content: "✓";
     position: absolute;
     top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--danger);
-    transform: translateY(-50%);
-    animation: strike 0.3s ease-out forwards;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 64px;
+    color: rgba(108, 92, 231, 0.15);
+    pointer-events: none;
+    z-index: 0;
 }
 
-@keyframes strike {
-    0% {
-        width: 0;
-        left: 0;
-    }
-
-    100% {
-        width: 100%;
-        left: 0;
-    }
+[data-theme="dark"] .task.completed::after {
+    color: rgba(162, 155, 254, 0.2);
+    font-size: 72px;
 }
 
 .task-header {
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Updated Checkbox Styles */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    padding-left: 30px;
+    margin-right: 10px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    border: 2px solid var(--primary);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover .checkmark {
+    background-color: rgba(108, 92, 231, 0.1);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+[data-theme="dark"] .checkbox-container .checkmark {
+    border-color: var(--secondary);
+}
+
+[data-theme="dark"] .checkbox-container input:checked ~ .checkmark {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+[data-theme="dark"] .checkbox-container:hover .checkmark {
+    background-color: rgba(162, 155, 254, 0.2);
 }
 
 .task-title {
     font-weight: 600;
     font-size: 1.2rem;
-    margin-left: 10px;
     flex: 1;
+    color: var(--text-primary);
+    position: relative;
+}
+
+.task.completed .task-title:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    transform: translateY(-50%);
+    animation: strike 0.3s ease-out forwards;
+}
+
+[data-theme="dark"] .task.completed .task-title:after {
+    background: var(--secondary);
 }
 
 .task.completed .task-title,
 .task.completed .task-description,
 .task.completed .task-meta {
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 .task-description {
-    color: #636e72;
+    color: var(--text-secondary);
     margin: 0.8rem 0;
     padding: 0.8rem;
-    background: #f8f9fa;
+    background: var(--subtask-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 8px;
+    border: 1px solid var(--border-glass);
+    position: relative;
+    z-index: 1;
 }
 
 .task-meta {
@@ -283,6 +503,8 @@ textarea {
     align-items: center;
     margin-top: 1rem;
     font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
 }
 
 .task-priority {
@@ -291,12 +513,16 @@ textarea {
     border-radius: 20px;
     font-weight: 600;
     font-size: 0.8rem;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
 }
 
 .task-due {
     display: flex;
     align-items: center;
     gap: 5px;
+    color: var(--text-secondary);
 }
 
 .task-due.overdue {
@@ -308,6 +534,8 @@ textarea {
     display: flex;
     gap: 10px;
     margin-top: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .btn-sm {
@@ -316,19 +544,32 @@ textarea {
 }
 
 .btn-edit {
-    background-color: var(--secondary);
+    background: rgba(162, 155, 254, 0.7);
     color: white;
 }
 
+.btn-edit:hover {
+    background: rgba(162, 155, 254, 0.8);
+}
+
 .btn-delete {
-    background-color: var(--danger);
+    background: rgba(255, 118, 117, 0.7);
     color: white;
+}
+
+.btn-delete:hover {
+    background: rgba(255, 118, 117, 0.8);
 }
 
 .empty-state {
     text-align: center;
     padding: 3rem;
-    color: #636e72;
+    color: var(--text-secondary);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    border: 1px solid var(--border-glass);
 }
 
 .empty-state img {
@@ -337,17 +578,13 @@ textarea {
     opacity: 0.7;
 }
 
-.checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
-
-/* Alt görevler için stiller */
+/* Subtask Styles */
 .subtasks {
     margin-top: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-glass);
     padding-top: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .subtask-header {
@@ -359,7 +596,7 @@ textarea {
 
 .subtask-title {
     font-weight: 500;
-    color: var(--dark);
+    color: var(--text-primary);
 }
 
 .subtask-list {
@@ -372,25 +609,95 @@ textarea {
     align-items: center;
     padding: 0.5rem;
     border-radius: 6px;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    background: var(--subtask-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
+    margin-bottom: 0.3rem;
 }
 
 .subtask-item:hover {
-    background: #f8f9fa;
+    background: var(--subtask-hover);
+}
+
+/* Subtask Checkbox Styles */
+.subtask-checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    padding-left: 28px;
+    margin: 5px 0;
+    width: 100%;
 }
 
 .subtask-checkbox {
-    margin-right: 10px;
+    position: absolute;
+    opacity: 0;
     cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.subtask-checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: transparent;
+    border: 2px solid var(--text-secondary);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.subtask-checkbox-container:hover .subtask-checkmark {
+    background-color: rgba(108, 92, 231, 0.05);
+}
+
+.subtask-checkbox:checked ~ .subtask-checkmark {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.subtask-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.subtask-checkbox:checked ~ .subtask-checkmark:after {
+    display: block;
+}
+
+.subtask-checkbox-container .subtask-checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+[data-theme="dark"] .subtask-checkmark {
+    border-color: var(--text-secondary);
+}
+
+[data-theme="dark"] .subtask-checkbox:checked ~ .subtask-checkmark {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
 }
 
 .subtask-text {
     flex: 1;
+    color: var(--text-primary);
 }
 
 .subtask-completed {
     text-decoration: line-through;
-    color: #636e72;
+    color: var(--text-secondary);
     opacity: 0.7;
 }
 
@@ -402,14 +709,16 @@ textarea {
 .add-subtask input {
     flex: 1;
     padding: 8px 12px;
-    border: 1px solid #dfe6e9;
+    border: 1px solid var(--border-glass);
     border-radius: 6px 0 0 6px;
     font-size: 0.9rem;
+    background: var(--bg-input);
+    color: var(--text-primary);
 }
 
 .add-subtask button {
     padding: 8px 12px;
-    background-color: var(--secondary);
+    background: var(--secondary);
     color: white;
     border: none;
     border-radius: 0 6px 6px 0;
@@ -424,7 +733,7 @@ textarea {
 .subtask-actions button {
     background: none;
     border: none;
-    color: #636e72;
+    color: var(--text-secondary);
     cursor: pointer;
     font-size: 0.8rem;
     padding: 2px 5px;
@@ -434,7 +743,7 @@ textarea {
     color: var(--danger);
 }
 
-/* Formdaki alt görevler için stiller */
+/* Form Subtasks */
 .form-subtasks {
     margin-top: 1rem;
 }
@@ -444,9 +753,12 @@ textarea {
     margin: 0.5rem 0;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #dfe6e9;
+    border: 1px solid var(--border-glass);
     border-radius: 8px;
     padding: 0.5rem;
+    background: var(--subtask-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .form-subtask-item {
@@ -454,17 +766,19 @@ textarea {
     align-items: center;
     padding: 0.5rem;
     border-radius: 4px;
-    background: #f8f9fa;
+    background: var(--subtask-bg);
     margin-bottom: 0.3rem;
+    transition: all 0.2s;
 }
 
-.form-subtask-item:last-child {
-    margin-bottom: 0;
+.form-subtask-item:hover {
+    background: var(--subtask-hover);
 }
 
 .form-subtask-text {
     flex: 1;
     font-size: 0.9rem;
+    color: var(--text-primary);
 }
 
 .form-subtask-remove {
@@ -475,10 +789,16 @@ textarea {
     font-weight: bold;
 }
 
-/* Timer sayfası stilleri */
+/* Timer Page Styles */
 .timer-container {
     text-align: center;
     padding: 2rem;
+    background: var(--bg-secondary);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border-radius: 16px;
+    border: 1px solid var(--border-glass);
+    box-shadow: var(--shadow-glass);
 }
 
 .timer-display {
@@ -487,9 +807,16 @@ textarea {
     margin: 2rem 0;
     color: var(--primary);
     font-family: 'Courier New', monospace;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.music-controls {
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -505,26 +832,117 @@ textarea {
     border: none;
     font-size: 1rem;
     min-width: 100px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
 }
 
+.music-btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-out; /* Daha yumuşak geçiş */
+    border: none;
+    font-size: 1rem;
+    min-width: 120px;
+    max-width: 120px; /* Başlangıç genişliği */
+    white-space: nowrap; /* Metin kaymasını engeller */
+    overflow: hidden; /* Taşan içeriği gizler */
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative; /* Animasyon için gerekli */
+}
+
+
+/* Dalgalanma efekti */
+@keyframes ripple {
+    to {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.music-btn::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+
+/* Aktif durumda genişleyen stil */
+.music-btn.active {
+    max-width: 300px; /* Maksimum genişlik */
+    background: rgba(0, 184, 148, 0.9) !important; /* Daha koyu arkaplan */
+}
+
+.music-btn.active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+/* "Now Playing" metni için */
+.music-btn .now-playing {
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.3s, width 0.3s;
+    margin-left: 0;
+}
+
+.music-btn.active .now-playing {
+    opacity: 1;
+    width: auto;
+    margin-left: 8px;
+}
+
+/* İkon animasyonu */
+.music-btn .icon {
+    transition: transform 0.3s;
+}
+
+.music-btn.active .icon {
+    transform: rotate(90deg); /* İkonu döndürme efekti */
+}
 .timer-btn.start {
-    background-color: var(--success);
+    background: rgba(0, 184, 148, 0.8);
     color: white;
 }
 
 .timer-btn.pause {
-    background-color: var(--warning);
+    background: rgba(253, 203, 110, 0.8);
     color: white;
 }
 
 .timer-btn.reset {
-    background-color: var(--danger);
+    background: rgba(255, 118, 117, 0.8);
+    color: white;
+}
+
+.music-btn.start {
+    background: rgba(0, 184, 148, 0.8);
     color: white;
 }
 
 .timer-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.music-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .timer-task-selector {
@@ -534,13 +952,16 @@ textarea {
 .timer-task-selector select {
     padding: 10px 15px;
     border-radius: 8px;
-    border: 2px solid #dfe6e9;
+    border: 1px solid var(--border-glass);
     font-size: 1rem;
     width: 100%;
     max-width: 400px;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* Yeni eklenen timer ayar stilleri */
 .timer-settings {
     display: flex;
     justify-content: center;
@@ -558,16 +979,20 @@ textarea {
 .timer-setting label {
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: var(--dark);
+    color: var(--text-primary);
 }
 
 .timer-setting input {
-    width: 80px;
-    padding: 8px 12px;
+    width: 100px;
+    padding: 20px 12px;
     text-align: center;
-    border: 2px solid #dfe6e9;
+    border: 1px solid var(--border-glass);
     border-radius: 8px;
     font-size: 1rem;
+    background: var(--bg-input);
+    color: var(--text-primary);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .preset-buttons {
@@ -580,19 +1005,22 @@ textarea {
 .preset-btn {
     padding: 8px 12px;
     border-radius: 8px;
-    background-color: #f8f9fa;
-    border: 2px solid #dfe6e9;
+    background: var(--subtask-bg);
+    border: 1px solid var(--border-glass);
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.9rem;
+    color: var(--text-primary);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .preset-btn:hover {
-    background-color: #e9ecef;
+    background: var(--subtask-hover);
 }
 
 .preset-btn.active {
-    background-color: var(--primary);
+    background: var(--primary);
     color: white;
     border-color: var(--primary);
 }
@@ -600,18 +1028,28 @@ textarea {
 .timer-info {
     margin-top: 1rem;
     font-size: 1.1rem;
-    color: var(--dark);
+    color: var(--text-primary);
 }
 
-/* Yeni eklenen form kart stili */
+.timer-progress {
+    height: 4px;
+    background: var(--primary);
+    width: 0%;
+    transition: width 1s linear;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+/* Form Card */
 .form-card {
-    background: white;
-    background: #f9f9ff;
+    background: var(--form-card-bg);
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--form-card-border);
+    box-shadow: var(--shadow-glass);
     margin-bottom: 2rem;
-    border: 1px solid #e0e0e0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .form-card h2 {
@@ -620,10 +1058,61 @@ textarea {
     font-size: 1.5rem;
 }
 
+/* Theme Toggle */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-glass);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes strike {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.task-updated {
+    animation: pulse 0.5s ease;
+}
+
+.timer-complete {
+    animation: pulse 0.5s ease;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         padding: 1.5rem;
         margin: 1rem;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
 
     .priority-selector {
@@ -638,9 +1127,134 @@ textarea {
         flex-direction: column;
         align-items: center;
     }
+    .music-controls{
+        flex-direction: column;
+        align-items: center;
+    }
 
     .timer-settings {
         flex-direction: column;
         align-items: center;
     }
+    
+    .task {
+        padding: 1rem;
+    }
+}
+
+/* Takvim Sayfası Stilleri */
+.calendar-container {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  box-shadow: var(--shadow-glass);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-weight: 600;
+  padding: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+  background: var(--bg-primary);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.calendar-day:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.calendar-day.today {
+  border: 2px solid var(--primary);
+}
+
+.calendar-day.has-tasks::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.calendar-day-number {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.calendar-events {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+.event-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.event-item {
+  background: var(--bg-secondary);
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.event-item .priority {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.event-item .priority.high {
+  background: var(--danger);
+}
+
+.event-item .priority.medium {
+  background: var(--warning);
+}
+
+.event-item .priority.low {
+  background: var(--success);
+}
+
+.btn-calendar-nav {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 0.5rem;
 }
